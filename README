@@ -1,0 +1,14 @@
+Roman Numeral Conversion
+
+erlc roman.erl -> compile the erl file into a beam (compiled erlang) file
+
+or
+
+erl
+c(roman).
+
+roman:to(1234).
+
+
+Run unit tests (eunit):
+roman:test().
