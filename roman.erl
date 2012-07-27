@@ -64,5 +64,4 @@ roman_from_four_test() -> 4 = from("IV").
 roman_from_five_test() -> 5 = from("V").
 roman_from_nine_test() -> 9 = from("IX").
 roman_from_ten_test() -> 10 = from("X").
-roman_from_eighteen_test() ->
-    18 = from("XVIII").
+roman_from_eighteen_test() -> 18 = from("XVIII").
