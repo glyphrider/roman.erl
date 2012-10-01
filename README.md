@@ -7,11 +7,11 @@ To compile the erlang code into a beam file
 or
 
 	erl
-	c(roman).
+	1> c(roman).
 
 then
 
-	roman:to(1234).
+	2> roman:to(1234).
 
 
 To run unit tests (eunit):
