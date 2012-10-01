@@ -16,4 +16,5 @@ then
 
 To run unit tests (eunit):
 
-	roman:test().
+	erlc -DTEST roman.erl
+	erl roman:test().
