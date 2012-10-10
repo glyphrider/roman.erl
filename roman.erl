@@ -5,15 +5,15 @@
 -export([to/1]).
 -export([from/1]).
 
--define(XLATE,[{1,"I"},{4,"IV"},{5,"V"},{9,"IX"},{10,"X"},{40,"XL"},{50,"L"},{90,"XC"},{100,"C"},{400,"CD"},{500,"D"},{900,"CM"},{1000,"M"}]).
+-define(XLATE,lists:reverse([{1,"I"},{4,"IV"},{5,"V"},{9,"IX"},{10,"X"},{40,"XL"},{50,"L"},{90,"XC"},{100,"C"},{400,"CD"},{500,"D"},{900,"CM"},{1000,"M"}])).
 
-to(N) -> to(N,"",lists:reverse(?XLATE)).
+to(N) -> to(N,"",?XLATE).
 to(0,S,_) -> S;
 to(N,S,[H|T]) -> to(N,S,H,T).
 to(N,S,{A,R},T) when N >= A -> to(N-A,S ++ R, {A,R},T);
 to(N,S,_,T) -> to(N,S,T). 
 
-from(S) -> from(S,0,lists:reverse(?XLATE)).
+from(S) -> from(S,0,?XLATE).
 from("",N,_) -> N;
 from(S,N,[H|T]) -> from(S,N,H,T).
 from(S,N,{A,R},T) ->
