@@ -6,10 +6,11 @@
 
 -define(XLATE,lists:reverse([{1,"I"},{4,"IV"},{5,"V"},{9,"IX"},{10,"X"},{40,"XL"},{50,"L"},{90,"XC"},{100,"C"},{400,"CD"},{500,"D"},{900,"CM"},{1000,"M"}])).
 -define(EMPTY,"").
+-define(ZERO,0).
 
 to(Number) ->
     to(Number,?EMPTY,?XLATE).
-to(0,String,_) ->
+to(?ZERO,String,_) ->
     String;
 to(Number,String,[{Arabic,Roman}|_Tail]=List) when Number >= Arabic ->
     to(Number-Arabic,String ++ Roman, List);
@@ -17,7 +18,7 @@ to(Number,String,[_Head|Tail]) ->
     to(Number,String,Tail). 
 
 from(String) ->
-    from(String,0,?XLATE).
+    from(String,?ZERO,?XLATE).
 from(?EMPTY,Number,_) ->
     Number;
 from(String,Number,[{Arabic,Roman}|Tail]=List) ->
