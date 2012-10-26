@@ -2,25 +2,29 @@
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
 -endif.
--export([to/1]).
--export([from/1]).
+-export([to/1,from/1]).
 
 -define(XLATE,lists:reverse([{1,"I"},{4,"IV"},{5,"V"},{9,"IX"},{10,"X"},{40,"XL"},{50,"L"},{90,"XC"},{100,"C"},{400,"CD"},{500,"D"},{900,"CM"},{1000,"M"}])).
+-define(EMPTY,"").
 
-to(N) -> to(N,"",?XLATE).
-to(0,S,_) -> S;
-to(N,S,[H|T]) -> to(N,S,H,T).
-to(N,S,{A,R},T) when N >= A -> to(N-A,S ++ R, {A,R},T);
-to(N,S,_,T) -> to(N,S,T). 
+to(Number) ->
+    to(Number,?EMPTY,?XLATE).
+to(0,String,_) ->
+    String;
+to(Number,String,[{Arabic,Roman}|_Tail]=List) when Number >= Arabic ->
+    to(Number-Arabic,String ++ Roman, List);
+to(Number,String,[_Head|Tail]) ->
+    to(Number,String,Tail). 
 
-from(S) -> from(S,0,?XLATE).
-from("",N,_) -> N;
-from(S,N,[H|T]) -> from(S,N,H,T).
-from(S,N,{A,R},T) ->
-	case string:str(S,R) of
-		1 -> from(string:substr(S,string:len(R)+1),N+A,{A,R},T);
-		_ -> from(S,N,T)
-	end.
+from(String) ->
+    from(String,0,?XLATE).
+from(?EMPTY,Number,_) ->
+    Number;
+from(String,Number,[{Arabic,Roman}|Tail]=List) ->
+    case string:str(String,Roman) of
+	1 -> from(string:substr(String,string:len(Roman)+1),Number+Arabic,List);
+	_ -> from(String,Number,Tail)
+    end.
 
 -ifdef(EUNIT).
 to_roman_one_test() -> "I" = to(1).
