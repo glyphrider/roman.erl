@@ -17,4 +17,4 @@ then
 To run unit tests (eunit):
 
 	erlc -DTEST roman.erl
-	erl roman:test().
+	erl -s roman test -s init stop
