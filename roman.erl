@@ -28,6 +28,7 @@ from(String,Number,[{Arabic,Roman}|Tail]=List) ->
     end.
 
 -ifdef(EUNIT).
+
 to_roman_one_test() -> "I" = to(1).
 to_roman_two_test() -> "II" = to(2).
 to_roman_three_test() -> "III" = to(3).
@@ -48,6 +49,7 @@ to_roman_four_hundred_test() -> "CD" = to(400).
 to_roman_thousand_test() -> "M" = to(1000).
 to_roman_nine_hundred_test() -> "CM" = to(900).
 to_roman_nineteen_sixty_eight_test() -> "MCMLXVIII" = to(1968).
+to_roman_sixty_nine_test() -> "LXIX" = to(69).
 
 from_roman_one_test() -> 1 = from("I").
 from_roman_two_test() -> 2 = from("II").
@@ -69,5 +71,5 @@ from_roman_four_hundred_test() -> 400 = from("CD").
 from_roman_thousand_test() -> 1000 = from("M").
 from_roman_nine_hundred_test() -> 900 = from("CM").
 from_roman_nineteen_sixty_eight_test() -> 1968 = from("MCMLXVIII").
-from_roman_sixty_nine_test() -> 69 = from("LXIX").
+
 -endif.
