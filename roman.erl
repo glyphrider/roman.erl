@@ -49,6 +49,7 @@ to_roman_four_hundred_test() -> "CD" = to(400).
 to_roman_thousand_test() -> "M" = to(1000).
 to_roman_nine_hundred_test() -> "CM" = to(900).
 to_roman_nineteen_sixty_eight_test() -> "MCMLXVIII" = to(1968).
+to_roman_sixty_nine_test() -> "LXIX" = to(69).
 
 from_roman_one_test() -> 1 = from("I").
 from_roman_two_test() -> 2 = from("II").
