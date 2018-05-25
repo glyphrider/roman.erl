@@ -69,5 +69,4 @@ from_roman_four_hundred_test() -> 400 = from("CD").
 from_roman_thousand_test() -> 1000 = from("M").
 from_roman_nine_hundred_test() -> 900 = from("CM").
 from_roman_nineteen_sixty_eight_test() -> 1968 = from("MCMLXVIII").
-from_roman_sixty_nine_test() -> 69 = from("LXIX").
 -endif.
