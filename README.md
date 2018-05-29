@@ -18,3 +18,5 @@ To run unit tests (eunit):
 
 	erlc -DTEST roman.erl
 	erl -s roman test -s init stop
+
+Todo: See about an Emakefile.
