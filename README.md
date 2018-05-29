@@ -18,3 +18,5 @@ To run unit tests (eunit):
 
 	erlc -DTEST roman.erl
 	erl -s roman test -s init stop
+
+See `Jenkinsfile` for modern build formulae.
