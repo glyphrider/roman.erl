@@ -1,6 +1,7 @@
 -module(roman).
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
+-export([verbose_testing/0]).
 -endif.
 -export([to/1,from/1]).
 
@@ -28,46 +29,48 @@ from(String,Number,[{Arabic,Roman}|Tail]=List) ->
     end.
 
 -ifdef(EUNIT).
-to_roman_one_test() -> "I" = to(1).
-to_roman_two_test() -> "II" = to(2).
-to_roman_three_test() -> "III" = to(3).
-to_roman_four_test() -> "IV" = to(4).
-to_roman_five_test() -> "V" = to(5).
-to_roman_six_test() -> "VI" = to(6).
-to_roman_nine_test() -> "IX" = to(9).
-to_roman_ten_test() -> "X" = to(10).
-to_roman_sixteen_test() -> "XVI" = to(16).
-to_roman_nineteen_test() -> "XIX" = to(19).
-to_roman_twenty_eight_test() -> "XXVIII" = to(28).
-to_roman_forty_test() -> "XL" = to(40).
-to_roman_fifty_test() -> "L" = to(50).
-to_roman_ninety_test() -> "XC" = to(90).
-to_roman_hundred_test() -> "C" = to(100).
-to_roman_five_hundred_test() -> "D" = to(500).
-to_roman_four_hundred_test() -> "CD" = to(400).
-to_roman_thousand_test() -> "M" = to(1000).
-to_roman_nine_hundred_test() -> "CM" = to(900).
-to_roman_nineteen_sixty_eight_test() -> "MCMLXVIII" = to(1968).
 
-from_roman_one_test() -> 1 = from("I").
-from_roman_two_test() -> 2 = from("II").
-from_roman_three_test() -> 3 = from("III").
-from_roman_four_test() -> 4 = from("IV").
-from_roman_five_test() -> 5 = from("V").
-from_roman_six_test() -> 6 = from("VI").
-from_roman_nine_test() -> 9 = from("IX").
-from_roman_ten_test() -> 10 = from("X").
-from_roman_sixteen_test() -> 16 = from("XVI").
-from_roman_nineteen_test() -> 19 = from("XIX").
-from_roman_twenty_eight_test() -> 28 = from("XXVIII").
-from_roman_forty_test() -> 40 = from("XL").
-from_roman_fifty_test() -> 50 = from("L").
-from_roman_ninety_test() -> 90 = from("XC").
-from_roman_hundred_test() -> 100 = from("C").
-from_roman_five_hundred_test() -> 500 = from("D").
-from_roman_four_hundred_test() -> 400 = from("CD").
-from_roman_thousand_test() -> 1000 = from("M").
-from_roman_nine_hundred_test() -> 900 = from("CM").
-from_roman_nineteen_sixty_eight_test() -> 1968 = from("MCMLXVIII").
-from_roman_sixty_nine_test() -> 69 = from("LXIX").
+-define(TEST_CASES,[
+		    {"I",1},
+		    {"II",2},
+		    {"III",3},
+		    {"IV",4},
+		    {"V",5},
+		    {"VI",6},
+		    {"IX",9},
+		    {"X",10},
+		    {"XVI",16},
+		    {"XIX",19},
+		    {"XXVIII",28},
+		    {"XL",40},
+		    {"L",50},
+		    {"XC",90},
+		    {"C",100},
+		    {"D",500},
+		    {"CD",400},
+		    {"M",1000},
+		    {"CM",900},
+		    {"MCMLXVIII",1968},
+		    {"LXIX",69}
+		   ]).
+
+roman_to_arabic_test_() ->
+    {"Roman to Arabic",
+    lists:map(fun({R,A}) ->
+		      {lists:flatten([R," to ",integer_to_list(A)]),
+		       ?_assertEqual(A,from(R))}
+	      end,
+	      ?TEST_CASES)}.
+
+arabic_to_roman_test_() ->
+    {"Arabic to Roman",
+     lists:map(fun({R,A}) ->
+		       {lists:flatten([integer_to_list(A)," to ",R]),
+			?_assertEqual(R,to(A))}
+	       end,
+	       ?TEST_CASES)}.
+
+verbose_testing() ->
+    eunit:test(?MODULE,[verbose]).
+
 -endif.
