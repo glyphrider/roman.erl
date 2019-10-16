@@ -1,5 +1,7 @@
 # Roman Numeral Conversion
 
+[![Build Status](https://travis-ci.org/glyphrider/roman.erl.svg?branch=master)](https://travis-ci.org/glyphrider/roman.erl)
+
 To compile the erlang code into a beam file
 
 	erlc roman.erl
