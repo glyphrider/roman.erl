@@ -3,7 +3,7 @@ BEAMS=roman.beam
 ERLC_FLAGS=-DTEST
 
 test : $(BEAMS)
-	erl -noinput -run $(MODULE) test -s init stop
+	erl -noinput -run $(MODULE) verbose_testing -s init stop
 
 clean :
 	rm -f $(BEAMS)

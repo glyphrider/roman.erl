@@ -1,5 +1,7 @@
 # Roman Numeral Conversion
 
+[![Build Status](https://travis-ci.org/glyphrider/roman.erl.svg?branch=master)](https://travis-ci.org/glyphrider/roman.erl)
+
 To compile the erlang code into a beam file
 
 	erlc roman.erl
@@ -17,7 +19,7 @@ then
 To run unit tests (eunit):
 
 	erlc -DTEST roman.erl
-	erl -s roman test -s init stop
+	erl -s roman verbose_testing -s init stop
 
 See `Jenkinsfile` for modern build formulae. Reference at [Using a Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/).
 
