@@ -11,6 +11,7 @@
 
 to(Number) ->
     to(Number,?EMPTY,?XLATE).
+
 to(?ZERO,String,_) ->
     String;
 to(Number,String,[{Arabic,Roman}|_Tail]=List) when Number >= Arabic ->
@@ -20,6 +21,7 @@ to(Number,String,[_Head|Tail]) ->
 
 from(String) ->
     from(String,?ZERO,?XLATE).
+
 from(?EMPTY,Number,_) ->
     Number;
 from(String,Number,[{Arabic,Roman}|Tail]=List) ->
