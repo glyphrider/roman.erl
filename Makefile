@@ -1,5 +1,5 @@
-MODULE=roman
-BEAMS=roman.beam
+MODULE=roman_tests
+BEAMS=roman.beam roman_tests.beam
 ERLC_FLAGS=-DTEST
 
 test : $(BEAMS)
