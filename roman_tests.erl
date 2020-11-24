@@ -74,6 +74,6 @@ arabic_to_roman_test_() ->
 	       ?TEST_CASES)}.
 
 verbose_testing() ->
-    eunit:test(?MODULE,[verbose]).
+    eunit:test(?MODULE,[verbose,{report,{eunit_surefire,[{dir,"."}]}}]).
 
 -endif.
