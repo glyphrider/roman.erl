@@ -2,7 +2,7 @@ version: 2.1
 executors:
   exectr:
     docker:
-      - image: glyphrider/erlang.docker:latest
+      - image: glyphrider/erlang:latest
 
 jobs:
   build:
