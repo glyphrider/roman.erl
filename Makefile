@@ -1,4 +1,4 @@
-MODULE=roman_tests
+MODULE=roman
 BEAMS=roman.beam roman_tests.beam
 ERLC_FLAGS=-DTEST
 
