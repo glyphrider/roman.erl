@@ -1,12 +1,12 @@
 version: 2.1
 executors:
-  exectr:
+  erlang-latest:
     docker:
       - image: library/erlang:latest
 
 jobs:
   build:
-    executor: exectr
+    executor: erlang-latest
     steps:
       - checkout
       - run:
@@ -19,7 +19,7 @@ jobs:
           paths: .
 
   test:
-    executor: exectr
+    executor: erlang-latest
     steps:
       - attach_workspace:
           at: .
