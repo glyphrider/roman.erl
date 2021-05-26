@@ -16,7 +16,7 @@ jobs:
             erlc -DTEST roman_tests.erl
       - run:
           name: Execute eunit
-          comand: |
+          command: |
             erl -noinput -run roman verbose_testing -s init stop
       - store_test_results:
           path: .
