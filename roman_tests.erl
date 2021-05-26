@@ -1,7 +1,6 @@
 -module(roman_tests).
 -ifdef(TEST).
 -include_lib("eunit/include/eunit.hrl").
--export([verbose_testing/0]).
 -endif.
 -ifdef(EUNIT).
 
