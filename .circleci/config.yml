@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Compile erlang source files with erlc (passing TEST flag)
+          name: Compile code
           command: |
             erlc -DTEST roman.erl
             erlc -DTEST roman_tests.erl
