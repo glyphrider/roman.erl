@@ -20,6 +20,8 @@ jobs:
             erl -noinput -run roman verbose_testing -s init stop
       - store_test_results:
           path: .
+      - store_artifacts:
+          path: TEST-roman.xml
 
 workflows:
   version: 2
