@@ -21,4 +21,6 @@ To run unit tests (eunit):
 	erlc -DTEST roman.erl
 	erl -s roman verbose_testing -s init stop
 
+See `Jenkinsfile` for modern build formulae. Reference at [Using a Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/).
+
 Todo: See about an Emakefile.
