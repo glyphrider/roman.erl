@@ -12,12 +12,13 @@ jobs:
       - run:
           name: Compile code
           command: |
-            erlc -DTEST roman.erl
-            erlc -DTEST roman_tests.erl
+            mkdir -pv ebin
+            erlc -DTEST -o ebin src/roman.erl
+            erlc -DTEST -o ebin src/roman_tests.erl
       - run:
           name: Execute eunit
           command: |
-            erl -noinput -run roman verbose_testing -s init stop
+            erl -pz ebin -noinput -run roman verbose_testing -s init stop
       - store_test_results:
           path: .
       - store_artifacts:
