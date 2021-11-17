@@ -1,12 +1,25 @@
-MODULE=roman
-BEAMS=roman.beam roman_tests.beam
+SRC=src
+TESTS=tests
+EBIN=ebin
 ERLC_FLAGS=-DTEST
 
-test : $(BEAMS)
-	erl -noinput -run $(MODULE) verbose_testing -s init stop
+MAIN_MODULE=roman
+
+BEAMS=roman roman_tests
+
+BEAMFILES=$(addprefix $(EBIN)/,$(addsuffix .beam,$(BEAMS)))
+
+.PHONY : test
+test : TEST-$(MAIN_MODULE).xml
+
+TEST-$(MAIN_MODULE).xml : $(BEAMFILES)
+	erl -pz $(EBIN) -noinput -run $(MAIN_MODULE) verbose_testing -s init stop
+
+$(EBIN)/%.beam : $(SRC)/%.erl
+	@mkdir -pv $(EBIN)
+	erlc $(ERLC_FLAGS) -o $(EBIN) $<
 
 clean :
-	rm -f $(BEAMS)
-
-%.beam : %.erl
-	erlc $(ERLC_FLAGS) $^
+	@rm -fv $(BEAMFILES)
+	@rmdir -v $(EBIN)
+	@rm -fv TEST-$(MAIN_MODULE).xml
