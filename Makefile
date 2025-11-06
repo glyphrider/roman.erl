@@ -16,10 +16,10 @@ TEST-$(MAIN_MODULE).xml : $(BEAMFILES)
 	erl -pz $(EBIN) -noinput -run $(MAIN_MODULE) verbose_testing -s init stop
 
 $(EBIN)/%.beam : $(SRC)/%.erl
-	@mkdir -pv $(EBIN)
+	mkdir -p $(EBIN)
 	erlc $(ERLC_FLAGS) -o $(EBIN) $<
 
 clean :
-	@rm -fv $(BEAMFILES)
-	@rmdir -v $(EBIN)
-	@rm -fv TEST-$(MAIN_MODULE).xml
+	rm -fv $(BEAMFILES)
+	[ ! -d $(EBIN) ] || rmdir $(EBIN)
+	rm -fv TEST-$(MAIN_MODULE).xml
