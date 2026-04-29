@@ -1,12 +1,12 @@
 version: 2.1
 executors:
-  erlang-latest:
+  erlang-26:
     docker:
-      - image: library/erlang:latest
+      - image: library/erlang:26
 
 jobs:
   compile-and-test:
-    executor: erlang-latest
+    executor: erlang-26
     steps:
       - checkout
       - run:

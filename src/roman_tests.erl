@@ -5,7 +5,6 @@
 -ifdef(EUNIT).
 
 -define(TEST_CASES,[
-                    {0, ""},
 		    {1, "I"},
 		    {2, "II"},
 		    {3, "III"},

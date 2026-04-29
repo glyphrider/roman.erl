@@ -26,7 +26,7 @@
 -define(EMPTY,"").
 -define(ZERO,0).
 
-to(Number) ->
+to(Number) when Number >= 1, Number =< 3999 ->
     to(Number,?EMPTY,?XLATE).
 
 to(?ZERO,String,_) ->
@@ -36,15 +36,15 @@ to(Number,String,[{Arabic,Roman}|_Tail]=List) when Number >= Arabic ->
 to(Number,String,[_Head|Tail]) ->
     to(Number,String,Tail). 
 
-from(String) ->
+from(String) when is_list(String), String =/= ?EMPTY ->
     from(String,?ZERO,?XLATE).
 
 from(?EMPTY,Number,_) ->
     Number;
 from(String,Number,[{Arabic,Roman}|Tail]=List) ->
-    case string:str(String,Roman) of
-	1 -> from(string:substr(String,string:len(Roman)+1),Number+Arabic,List);
-	_ -> from(String,Number,Tail)
+    case string:prefix(String,Roman) of
+	nomatch -> from(String,Number,Tail);
+	Rest    -> from(Rest,Number+Arabic,List)
     end.
 
 -ifdef(EUNIT).
