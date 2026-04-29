@@ -1,25 +1,8 @@
-SRC=src
-TESTS=tests
-EBIN=ebin
-ERLC_FLAGS=-DTEST
+.PHONY: test clean
 
-MAIN_MODULE=roman
+test:
+	rebar3 eunit
 
-BEAMS=roman roman_tests
-
-BEAMFILES=$(addprefix $(EBIN)/,$(addsuffix .beam,$(BEAMS)))
-
-.PHONY : test
-test : TEST-$(MAIN_MODULE).xml
-
-TEST-$(MAIN_MODULE).xml : $(BEAMFILES)
-	erl -pz $(EBIN) -noinput -run $(MAIN_MODULE) verbose_testing -s init stop
-
-$(EBIN)/%.beam : $(SRC)/%.erl
-	mkdir -p $(EBIN)
-	erlc $(ERLC_FLAGS) -o $(EBIN) $<
-
-clean :
-	rm -fv $(BEAMFILES)
-	[ ! -d $(EBIN) ] || rmdir $(EBIN)
-	rm -fv TEST-$(MAIN_MODULE).xml
+clean:
+	rebar3 clean
+	rm -fv TEST-roman.xml

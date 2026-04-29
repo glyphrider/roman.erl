@@ -10,19 +10,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Compile code
-          command: |
-            mkdir -pv ebin
-            erlc -DTEST -o ebin src/roman.erl
-            erlc -DTEST -o ebin src/roman_tests.erl
+          name: Install rebar3
+          command: wget https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3 && mv rebar3 /usr/local/bin/
       - run:
-          name: Execute eunit
-          command: |
-            erl -pz ebin -noinput -run roman verbose_testing -s init stop
+          name: Compile and test
+          command: rebar3 eunit
       - store_test_results:
-          path: .
-      - store_artifacts:
-          path: TEST-roman.xml
+          path: _build/test/logs
 
 workflows:
   version: 2

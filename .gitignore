@@ -1,4 +1,5 @@
-*.beam
+_build/
 *~
 erl_crash.dump
 TEST-*.xml
+ebin/
